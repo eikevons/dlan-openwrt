@@ -10,25 +10,20 @@
 touch /etc/config/plc
 uci set plc.plc=plc
 
-type -t board_name >/dev/null || {
-	# for old OpenWrt without generic board_name function
-	. /lib/ar71xx.sh
-	board_name() ar71xx_board_name
-}
 board=$(board_name)
 
 case "$board" in
-    dlan-hotspot)
+    devolo,dlan-hotspot)
         uci set plc.plc.disabled=0
         uci set plc.plc.interface=eth1
         ;;
-    dlan-pro-500-wp)
+    devolo,dlan-pro-500-wp)
         uci set plc.plc.disabled=0
         uci set plc.plc.interface=eth0
         uci set plc.plc.individual_nmk=1
         ;;
-    dlan-pro-1200-ac|\
-    dlan-pro-1200-n)
+    devolo,dlan-pro-1200-ac|\
+    devolo,dlan-pro-1200-n)
         uci set plc.plc.disabled=0
         uci set plc.plc.interface=eth0
         uci set plc.plc.individual_nmk=1
