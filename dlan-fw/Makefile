@@ -99,7 +99,7 @@ endif
 	echo "PLCFW_NVM='$(FW_TARGET)/$$$$(basename $$$$(ls -1 $(1)/lib/firmware/plc/$(FW_TARGET)/*.nvm|sed -n -e "1p"))'" >>$(1)/lib/firmware/plc/$(FW_TARGET)/fwconfig
 	echo "PLCFW_PIB='$(FW_TARGET)/$$$$(basename $$$$(ls -1 $(1)/lib/firmware/plc/$(FW_TARGET)/*.pib|sed -n -e "1p"))'" >>$(1)/lib/firmware/plc/$(FW_TARGET)/fwconfig
 	for pib in $$$$(cd $(1)/lib/firmware/plc/$(FW_TARGET)/; ls -1 *.pib); do \
-		echo "PLCFW_PIB_$$$$(echo $$$$pib | sed -e 's,.*mt\([0-9]*\).*,\1,')='$(FW_TARGET)/$$$$pib'"; \
+		echo "PLCFW_PIB_$$$$(echo $$$$pib | sed -e 's,.*\(\[0-9\]*\).*,\1,')='$(FW_TARGET)/$$$$pib'"; \
 	done >>$(1)/lib/firmware/plc/$(FW_TARGET)/fwconfig
 	echo "PLCFW_HOST=/usr/bin/$(FW_HOSTTOOL)" >>$(1)/lib/firmware/plc/$(FW_TARGET)/fwconfig
 	echo "PLCFW_SCHEMES=\$$$$PLCFW_PATH/$(FW_TARGET)" >>$(1)/lib/firmware/plc/$(FW_TARGET)/fwconfig
