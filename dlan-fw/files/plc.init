@@ -135,11 +135,12 @@ do_gpios()
 	echo 1 > /sys/class/gpio/gpio20/value
 	;;
 
-    # devolo,dlan-pro-500-wp)
+    devolo,dlan-pro-500-wp)
 	# echo 1 > /sys/class/gpio/gpio17/value
-	# echo 1 > /sys/class/gpio/gpio13/value
-    #     led_set_attr "green:wlan" inverted 1
-	# ;;
+        [ ! -f /sys/class/gpio/gpio13 ] && echo -n 13 > /sys/class/gpio/export
+	echo 1 > /sys/class/gpio/gpio13/value
+        led_set_attr "green:wlan" inverted 1
+	;;
 
     devolo,dlan-pro-1200-ac|\
     devolo,dlan-pro-1200-n)
