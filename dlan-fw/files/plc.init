@@ -137,7 +137,10 @@ do_gpios()
 
     devolo,dlan-pro-500-wp)
 	# echo 1 > /sys/class/gpio/gpio17/value
-        [ ! -f /sys/class/gpio/gpio13 ] && echo -n 13 > /sys/class/gpio/export
+        if [ ! -d /sys/class/gpio/gpio13 ]; then
+            logger "Exporting GPIO 13 in sysfs"
+            echo -n 13 > /sys/class/gpio/export
+        fi
 	echo 1 > /sys/class/gpio/gpio13/value
         led_set_attr "green:wlan" inverted 1
 	;;
